@@ -2,6 +2,7 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 
 
+import static constants.Endpoints.BASE_URL;
 import static org.junit.Assert.assertEquals;
 
 public class LoginTest extends TestBase {
@@ -15,7 +16,7 @@ public class LoginTest extends TestBase {
         loginPage.setPassword(user.getPassword());
         loginPage.clickButtonLogin();
         String actual = webDriver.getCurrentUrl();
-        assertEquals("https://stellarburgers.nomoreparties.site/", actual);
+        assertEquals(BASE_URL, actual);
     }
 
     @Test
@@ -26,7 +27,7 @@ public class LoginTest extends TestBase {
         loginPage.setPassword(user.getPassword());
         loginPage.clickButtonLogin();
         String actual = webDriver.getCurrentUrl();
-        assertEquals("https://stellarburgers.nomoreparties.site/", actual);
+        assertEquals(BASE_URL, actual);
     }
 
     @Test
@@ -39,7 +40,7 @@ public class LoginTest extends TestBase {
         loginPage.setPassword(user.getPassword());
         loginPage.clickButtonLogin();
         String actual = webDriver.getCurrentUrl();
-        assertEquals("https://stellarburgers.nomoreparties.site/", actual);
+        assertEquals(BASE_URL, actual);
     }
 
     @Test
@@ -52,7 +53,7 @@ public class LoginTest extends TestBase {
         loginPage.setPassword(user.getPassword());
         loginPage.clickButtonLogin();
         String actual = webDriver.getCurrentUrl();
-        assertEquals("https://stellarburgers.nomoreparties.site/", actual);
+        assertEquals(BASE_URL, actual);
     }
 
 

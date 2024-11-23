@@ -14,10 +14,8 @@ public class HomePage {
     public HomePage(WebDriver driver) {
         this.driver = driver;
     }
-    private final By orderPlaceButton = By.xpath(".//button[text()='Оформить заказ']");
     private final By profileEnterButton = By.xpath(".//p[text()='Личный Кабинет']");
     private final By accountEnterButton = By.xpath(".//button[text()='Войти в аккаунт']");
-    private final By burgerAssembleTitle = By.xpath(".//*[text()='Соберите бургер']");
     private final By menuBuns = By.xpath(".//span[text()='Булки']/..");
     public final By menuSauces = By.xpath(".//span[text()='Соусы']/..");
     private final By menuFillings = By.xpath(".//span[text()='Начинки']/..");
@@ -78,13 +76,13 @@ public class HomePage {
     }
 
     public String getBunSectionClassName() {
-        return getBunSection().getText();
+        return getBunSection().getAttribute("CLASS");
     }
     public String getSauceSectionClassName() {
-        return getSauceSection().getText();
+        return getSauceSection().getAttribute("CLASS");
     }
     public String getFillingSectionClassName() {
-        return getFillingSection().getText();
+        return getFillingSection().getAttribute("CLASS");
     }
 
 

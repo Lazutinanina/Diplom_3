@@ -1,41 +1,35 @@
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 
-
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.Assert.assertTrue;
 
 
 public class ConstructorTest extends TestBase {
 
-    private final List<String> ingredientsBurger = Arrays.asList("Булки", "Соусы", "Начинки");
-
+    private final String selectedSectionClassPart = "current";
 
     @Test
     @DisplayName("Переход по разделам Конструктора, булки")
     public void clickSectionBunTest() {
         homePage.clickBun();
-        String actual = homePage.getBunSectionClassName();
-        assertTrue(ingredientsBurger.contains(actual));
+        String className = homePage.getBunSectionClassName();
+        assertTrue(className.contains(selectedSectionClassPart));
     }
 
     @Test
     @DisplayName("Переход по разделам Конструктора, соусы")
     public void clickSectionSauceTest() {
         homePage.clickSauce();
-        String actual = homePage.getSauceSectionClassName();
-        assertTrue(ingredientsBurger.contains(actual));
+        String className = homePage.getSauceSectionClassName();
+        assertTrue(className.contains(selectedSectionClassPart));
     }
-
 
     @Test
     @DisplayName("Переход по разделам Конструктора, начинки")
     public void clickSectionFillingTest() {
         homePage.clickFilling();
-        String actual = homePage.getFillingSectionClassName();
-        assertTrue(ingredientsBurger.contains(actual));
+        String className = homePage.getFillingSectionClassName();
+        assertTrue(className.contains(selectedSectionClassPart));
     }
 
 

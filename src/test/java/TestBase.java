@@ -9,6 +9,8 @@ import user.UserClient;
 
 import java.time.Duration;
 
+import static constants.Endpoints.BASE_URL;
+
 
 public class TestBase {
     protected WebDriver webDriver;
@@ -23,7 +25,7 @@ public class TestBase {
     public void setUp() {
         webDriver = WebDriverFactory.getWebDriver();
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        webDriver.get("https://stellarburgers.nomoreparties.site");
+        webDriver.get(BASE_URL);
         registrationPage = new RegistrationPage(webDriver);
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);

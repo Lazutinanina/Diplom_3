@@ -8,8 +8,11 @@ public class WebDriverFactory {
         switch (System.getProperty("browser")) {
             case "yandex":
                 System.setProperty("webdriver.chrome.driver", "src/main/resources/yandexdriver");
-                ChromeOptions options = new ChromeOptions();
-                options.setBinary("/Applications/Yandex.app/Contents/MacOS/Yandex");
+                String browserPath = System.getProperty("browserPath");
+                if (browserPath != null) {
+                    ChromeOptions yandexOptions = new ChromeOptions();
+                    yandexOptions.setBinary(browserPath);
+                }
                 return new ChromeDriver();
             case "chrome":
                 WebDriverManager.chromedriver().setup();

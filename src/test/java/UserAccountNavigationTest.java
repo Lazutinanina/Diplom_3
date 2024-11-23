@@ -7,6 +7,7 @@ import org.junit.runners.Parameterized;
 
 import static constants.ButtonConstructor.CONSTRUCTOR;
 import static constants.ButtonConstructor.LOGO_STELLAR_BURGER;
+import static constants.Endpoints.*;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
@@ -45,11 +46,8 @@ public class UserAccountNavigationTest extends TestBase {
         personalAccountPage.clickExit();
         loginPage.waitLoadHeader();
 
-        String expectedUrl = "https://stellarburgers.nomoreparties.site/login";
-        assertEquals(expectedUrl, webDriver.getCurrentUrl());
+        assertEquals(LOGIN_URL, webDriver.getCurrentUrl());
     }
-
-    // Параметризованные тесты
 
     @Test
     @DisplayName("Переход из ЛК в Конструктор")
@@ -57,8 +55,7 @@ public class UserAccountNavigationTest extends TestBase {
         personalAccountPage.transitionToPersonalAccount(homePage, loginPage, user);
         personalAccountPage.waitLoadingPage();
         personalAccountPage.changeButton(buttonConstructor);
-        String expectedUrl = "https://stellarburgers.nomoreparties.site/";
-        assertEquals(expectedUrl, webDriver.getCurrentUrl());
+        assertEquals(BASE_URL, webDriver.getCurrentUrl());
     }
 
     @Step("Авторизация")

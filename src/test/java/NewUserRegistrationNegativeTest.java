@@ -11,19 +11,16 @@ import page.HomePage;
 import page.LoginPage;
 import page.RegistrationPage;
 
-import static constants.Endpoints.BASE_URI;
-import static constants.Endpoints.ENDPOINT_FOR_LOGIN_USER;
+import static constants.Endpoints.*;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class NewUserRegistrationNegativeTest {
     private WebDriver webDriver;
-    private String actual;
     protected RegistrationPage registrationPage;
     protected LoginPage loginPage;
     protected HomePage homePage;
     protected User user;
-
     private final String password;
 
     public NewUserRegistrationNegativeTest(String password) {
@@ -43,7 +40,7 @@ public class NewUserRegistrationNegativeTest {
     @Before
     public void setUp() {
         webDriver = WebDriverFactory.getWebDriver();
-        webDriver.get("https://stellarburgers.nomoreparties.site/register");
+        webDriver.get(REGISTER_URL);
         user = GeneratorUser.getUser();
         registrationPage = new RegistrationPage(webDriver);
         loginPage = new LoginPage(webDriver);
@@ -51,7 +48,7 @@ public class NewUserRegistrationNegativeTest {
     }
 
     @After
-    public void CloseBrowser() {
+    public void closeBrowser() {
         webDriver.quit();
     }
     @Test
@@ -62,7 +59,7 @@ public class NewUserRegistrationNegativeTest {
         registrationPage.setPasswordFieldForRegister(password);
         registrationPage.clickButtonForRegister();
 
-        actual = registrationPage.getTestForIncorrectPassword();
+        String actual = registrationPage.getTestForIncorrectPassword();
 
         assertEquals("Некорректный пароль", actual);
     }

@@ -2,7 +2,7 @@ package user;
 
 import io.restassured.http.ContentType;
 
-import static constants.Endpoints.BASE_URI;
+import static constants.Endpoints.*;
 import static io.restassured.RestAssured.given;
 
 public class UserClient {
@@ -10,7 +10,7 @@ public class UserClient {
     public static void createUser(User user) {
         given().contentType(ContentType.JSON)
                 .body(user)
-                .post(BASE_URI + "/api/auth/register");
+                .post(ENDPOINT_FOR_REGISTRATION);
     }
 
 
@@ -18,11 +18,12 @@ public class UserClient {
         String accessToken = given()
                 .contentType(ContentType.JSON)
                 .body(user)
-                .post(BASE_URI + "/api/auth/login")
+                .post(ENDPOINT_FOR_LOGIN_USER)
                 .body().path("accessToken");
+
         given().contentType(ContentType.JSON)
                 .header("Authorization", accessToken)
-                .body(user).delete(BASE_URI + "/api/auth/user");
+                .body(user).delete(ENDPOINT_FOR_USER);
     }
 
 }

@@ -1,5 +1,4 @@
 import io.qameta.allure.junit4.DisplayName;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import user.GeneratorUser;
 import user.User;
 import org.junit.After;
@@ -11,16 +10,12 @@ import page.LoginPage;
 import page.RegistrationPage;
 import user.UserClient;
 
-import java.time.Duration;
 
-import static constants.Endpoints.BASE_URI;
-import static constants.Endpoints.ENDPOINT_FOR_LOGIN_USER;
+import static constants.Endpoints.*;
 import static org.junit.Assert.assertEquals;
 
 public class NewUserRegistrationTest {
     private WebDriver webDriver;
-    private String actual;
-    private final String expected = BASE_URI + ENDPOINT_FOR_LOGIN_USER;
     protected RegistrationPage registrationPage;
     protected LoginPage loginPage;
     protected HomePage homePage;
@@ -29,7 +24,7 @@ public class NewUserRegistrationTest {
     @Before
     public void setUp() {
         webDriver = WebDriverFactory.getWebDriver();
-        webDriver.get("https://stellarburgers.nomoreparties.site/register");
+        webDriver.get(REGISTER_URL);
         user = GeneratorUser.getUser();
         registrationPage = new RegistrationPage(webDriver);
         loginPage = new LoginPage(webDriver);
@@ -37,7 +32,7 @@ public class NewUserRegistrationTest {
     }
 
     @After
-    public void CloseBrowser() {
+    public void closeBrowser() {
         UserClient.deleteUser(user);
         webDriver.quit();
     }
@@ -50,9 +45,9 @@ public class NewUserRegistrationTest {
         registrationPage.setPasswordFieldForRegister(user.getPassword());
         registrationPage.clickButtonForRegister();
         registrationPage.waitLoginHeader();
-        actual = webDriver.getCurrentUrl();
+        String actual = webDriver.getCurrentUrl();
 
-        assertEquals(expected, actual);
+        assertEquals(LOGIN_URL, actual);
     }
 
 
